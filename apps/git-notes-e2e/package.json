@@ -1,0 +1,10 @@
+{
+  "name": "@git-notes/git-notes-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@git-notes/git-notes"
+    ]
+  }
+}
