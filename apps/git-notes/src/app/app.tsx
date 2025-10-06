@@ -6,6 +6,7 @@ import { initFirebase, useLoginWithGithub } from '@git-notes/common';
 
 export function App() {
   initFirebase();
+
   const { loginWithGithub } = useLoginWithGithub();
 
   const handleGithubLogin = async () => {

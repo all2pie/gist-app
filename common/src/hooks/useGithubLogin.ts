@@ -6,7 +6,6 @@ import {
 } from 'firebase/auth';
 
 export const useLoginWithGithub = () => {
-  console.log('useLoginWithGithub called=========');
   const loginWithGithub = async (): Promise<{
     user: User;
     token: string;

@@ -1,23 +1,39 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp, FirebaseApp, getApps } from 'firebase/app';
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyC_di3Il95_FU7PjFSfn6OVVpLKFgz7X1U',
-  authDomain: 'git-notes-7f1c1.firebaseapp.com',
-  projectId: 'git-notes-7f1c1',
-  storageBucket: 'git-notes-7f1c1.firebasestorage.app',
-  messagingSenderId: '460246786515',
-  appId: '1:460246786515:web:ecfec4c208dad61c610f26',
+interface FirebaseConfig {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+}
+
+const getFirebaseConfig = (): FirebaseConfig => {
+  const configString = import.meta.env.VITE_FIREBASE_CONFIG;
+
+  if (!configString) {
+    throw new Error('VITE_FIREBASE_CONFIG environment variable is not set');
+  }
+
+  try {
+    const config = JSON.parse(configString);
+    return config as FirebaseConfig;
+  } catch (error) {
+    console.error('Failed to parse Firebase config:', error);
+    throw new Error('Invalid Firebase configuration format');
+  }
 };
 
-// Initialize Firebase (only once)
 export const initFirebase = (): FirebaseApp => {
+  const config = getFirebaseConfig();
+  console.log(`🚀 ~ initFirebase ~ config:`, config);
+
   // Check if Firebase is already initialized
   const apps = getApps();
   if (apps.length > 0) {
     return apps[0];
   }
 
-  return initializeApp(firebaseConfig);
+  return initializeApp(config);
 };
