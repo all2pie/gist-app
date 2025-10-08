@@ -1,27 +1,25 @@
+import logoSvg from '@/assets/logo.svg';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
   Popover,
-  PopoverTrigger,
   PopoverContent,
+  PopoverTrigger,
 } from '@/components/ui/popover';
+import { useAuthStore } from '@/store';
 import { useLoginWithGithub } from '@git-notes/common';
-import logoSvg from '../../../assets/logo.svg';
-
 import './header.scss';
 
 export function Header() {
-  const isLoggedIn = false;
-  const userImg = '';
-  const userName = 'Haris';
+  const { login, logout, user, isLoggedIn } = useAuthStore();
   const { loginWithGithub } = useLoginWithGithub();
+  const userImg = user?.photoURL || '';
+  const userName = user?.displayName || 'anonymous';
 
   const handleGithubLogin = async () => {
     try {
-      const result = await loginWithGithub();
-      if (result) {
-        console.log('Login successful:', result.user);
-      }
+      const { token, user } = await loginWithGithub();
+      login(token, user);
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -44,7 +42,7 @@ export function Header() {
         {isLoggedIn && (
           <Popover>
             <PopoverTrigger asChild>
-              <img src={userImg} alt="Profile" />
+              <img src={userImg} alt="Profile" height={40} width={40} />
             </PopoverTrigger>
             <PopoverContent align="end" className="menu">
               <div style={{ color: '#3D3D3D' }}>Signed in as</div>
@@ -55,7 +53,9 @@ export function Header() {
               <div className="cursor-pointer">Your GitHub profile</div>
               <hr />
               <div className="cursor-pointer">Help</div>
-              <div className="cursor-pointer">Sign out</div>
+              <div className="cursor-pointer" onClick={logout}>
+                Sign out
+              </div>
             </PopoverContent>
           </Popover>
         )}

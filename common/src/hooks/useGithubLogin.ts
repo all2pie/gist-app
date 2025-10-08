@@ -9,7 +9,7 @@ export const useLoginWithGithub = () => {
   const loginWithGithub = async (): Promise<{
     user: User;
     token: string;
-  } | null> => {
+  }> => {
     const provider = new GithubAuthProvider();
     provider.addScope('gist');
     const auth = getAuth();
