@@ -1,17 +1,5 @@
 {
   "name": "@git-notes/git-notes",
   "version": "0.0.1",
-  "private": true,
-  "devDependencies": {
-    "tailwindcss": "^4.1.14"
-  },
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.2.3",
-    "@tailwindcss/vite": "^4.1.14",
-    "@types/node": "^20.19.9",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.544.0",
-    "tailwind-merge": "^3.3.1"
-  }
+  "private": true
 }
