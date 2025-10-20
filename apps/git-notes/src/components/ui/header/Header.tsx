@@ -1,17 +1,20 @@
 import logoSvg from '@/assets/logo.svg';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { useAuthStore } from '@/store';
+} from '@/components/ui/Popover';
+import { useAuthStore, useSearchStore } from '@/store';
 import { useLoginWithGithub } from '@git-notes/common';
 import './header.scss';
+import { Link, NavLink } from 'react-router-dom';
 
 export function Header() {
   const { login, logout, user, isLoggedIn } = useAuthStore();
+  const { searchQuery, setSearchQuery } = useSearchStore();
   const { loginWithGithub } = useLoginWithGithub();
   const userImg = user?.photoURL || '';
   const userName = user?.displayName || 'anonymous';
@@ -27,11 +30,18 @@ export function Header() {
 
   return (
     <header>
-      <div className="logo">
+      <Link className="logo" to="/">
         <img src={logoSvg} alt="Logo" />
-      </div>
+      </Link>
       <div className="actions">
-        <Input placeholder="Search gists..." />
+        <div className="search-container">
+          <Input
+            placeholder="Search gists..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+        </div>
 
         {!isLoggedIn && (
           <Button variant="outline" onClick={handleGithubLogin}>
@@ -48,11 +58,16 @@ export function Header() {
               <div style={{ color: '#3D3D3D' }}>Signed in as</div>
               <div className="font-bold">{userName}</div>
               <hr />
-              <div className="cursor-pointer">Your gists</div>
-              <div className="cursor-pointer">Starred gists</div>
-              <div className="cursor-pointer">Your GitHub profile</div>
+              <NavLink className="cursor-pointer" to="/create">
+                Create gist
+              </NavLink>
+              <NavLink className="cursor-pointer" to="/starred">
+                Starred gists
+              </NavLink>
+              <NavLink className="cursor-pointer" to="/profile">
+                Profile
+              </NavLink>
               <hr />
-              <div className="cursor-pointer">Help</div>
               <div className="cursor-pointer" onClick={logout}>
                 Sign out
               </div>

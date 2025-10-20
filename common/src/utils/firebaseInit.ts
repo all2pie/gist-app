@@ -27,7 +27,6 @@ const getFirebaseConfig = (): FirebaseConfig => {
 
 export const initFirebase = (): FirebaseApp => {
   const config = getFirebaseConfig();
-  console.log(`🚀 ~ initFirebase ~ config:`, config);
 
   // Check if Firebase is already initialized
   const apps = getApps();

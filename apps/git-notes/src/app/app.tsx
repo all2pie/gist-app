@@ -1,30 +1,76 @@
-import styles from './app.module.scss';
-import { DataTable } from './data-table';
-import { columns } from './columns';
-import { sampleUsers } from './types';
+import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
 import { initFirebase } from '@git-notes/common';
-import { Header } from '@/components/ui/header/header';
+import { Header } from '@/components/ui/header/Header';
+import { GitList } from './gist-list/GistList';
+import { Profile } from './profile/Profile';
+import { CreateGist } from './create-gist/CreateGist';
+import { GistDetail } from './gist-detail/GistDetail';
+import { StarredGists } from './starred-gists/StarredGists';
+import './styles.scss';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+// Root Layout Component
+function RootLayout() {
+  return (
+    <>
+      <Header />
+      <div className="my-8 mx-32">
+        <Outlet />
+      </div>
+    </>
+  );
+}
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <RootLayout />,
+      children: [
+        {
+          path: '/',
+          element: <GitList />,
+        },
+        {
+          path: '/profile',
+          element: <Profile />,
+        },
+        {
+          path: '/create',
+          element: <CreateGist />,
+        },
+        {
+          path: '/starred',
+          element: <StarredGists />,
+        },
+        {
+          path: '/gist/:id',
+          element: <GistDetail />,
+        },
+      ],
+    },
+  ],
+  {
+    future: {
+      v7_relativeSplatPath: true,
+    },
+  }
+);
+
+const queryClient = new QueryClient();
 
 export function App() {
   initFirebase();
 
   return (
-    <>
-      <Header></Header>
-
-      <div className="container mx-auto py-10 px-4">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            User Management
-          </h1>
-          <p className="text-gray-600">
-            Manage your users with this powerful data table
-          </p>
-        </div>
-
-        <DataTable columns={columns} data={sampleUsers} />
-      </div>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider
+        router={router}
+        future={{
+          v7_startTransition: true,
+        }}
+      />
+    </QueryClientProvider>
   );
 }
 
