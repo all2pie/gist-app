@@ -1,0 +1,8 @@
+.keyword {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+}

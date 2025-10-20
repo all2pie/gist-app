@@ -6,18 +6,71 @@ header {
   justify-content: space-between;
   align-items: center;
 
+  .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+      height: 32px;
+      width: auto;
+    }
+  }
+
   .actions {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
+    align-items: center;
+
+    .search-container {
+      position: relative;
+
+      .search-input {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        width: 300px;
+        font-size: 14px;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        &:focus {
+          outline: none;
+          border-color: rgba(255, 255, 255, 0.4);
+          background-color: rgba(255, 255, 255, 0.15);
+          box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
 
     button {
       background-color: white;
       color: var(--primary-color);
       font-weight: 600;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
     }
 
     img {
       border-radius: 100%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
 }

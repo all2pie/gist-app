@@ -1,14 +1,81 @@
-/* You can add global styles to this file, and also import other style files */
 @import 'tailwindcss';
+
+/* shadcn/ui theme configuration using Tailwind CSS v4 @theme directive */
+@theme {
+  /* shadcn/ui color variables - Custom theme based on #003b44 and #3d3d3d */
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.274 0 0); /* #3d3d3d */
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.274 0 0);
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.274 0 0);
+  --color-primary: oklch(0.218 0.041 195.6); /* #003b44 */
+  --color-primary-foreground: oklch(0.984 0.003 195.6);
+  --color-secondary: oklch(0.95 0.01 195.6);
+  --color-secondary-foreground: oklch(0.274 0 0);
+  --color-muted: oklch(0.96 0.005 195.6);
+  --color-muted-foreground: oklch(0.5 0.01 195.6);
+  --color-accent: oklch(0.93 0.015 195.6);
+  --color-accent-foreground: oklch(0.218 0.041 195.6);
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --color-destructive-foreground: oklch(0.984 0.003 247.858);
+  --color-border: oklch(0.9 0.01 195.6);
+  --color-input: oklch(0.9 0.01 195.6);
+  --color-ring: oklch(0.3 0.03 195.6);
+  --color-chart-1: oklch(0.5 0.08 195.6);
+  --color-chart-2: oklch(0.6 0.06 220);
+  --color-chart-3: oklch(0.4 0.04 170);
+  --color-chart-4: oklch(0.7 0.05 240);
+  --color-chart-5: oklch(0.55 0.07 160);
+  /* Border radius */
+  --radius: 0.625rem;
+}
+
+.dark {
+  --color-background: oklch(0.1 0.01 195.6);
+  --color-foreground: oklch(0.9 0.005 195.6);
+  --color-card: oklch(0.15 0.015 195.6);
+  --color-card-foreground: oklch(0.9 0.005 195.6);
+  --color-popover: oklch(0.12 0.012 195.6);
+  --color-popover-foreground: oklch(0.9 0.005 195.6);
+  --color-primary: oklch(0.4 0.06 195.6);
+  --color-primary-foreground: oklch(0.95 0.002 195.6);
+  --color-secondary: oklch(0.2 0.02 195.6);
+  --color-secondary-foreground: oklch(0.85 0.008 195.6);
+  --color-muted: oklch(0.18 0.015 195.6);
+  --color-muted-foreground: oklch(0.6 0.015 195.6);
+  --color-accent: oklch(0.25 0.025 195.6);
+  --color-accent-foreground: oklch(0.85 0.008 195.6);
+  --color-destructive: oklch(0.6 0.2 20);
+  --color-border: oklch(0.22 0.02 195.6);
+  --color-input: oklch(0.22 0.02 195.6);
+  --color-ring: oklch(0.5 0.04 195.6);
+  --color-chart-1: oklch(0.6 0.1 195.6);
+  --color-chart-2: oklch(0.65 0.08 220);
+  --color-chart-3: oklch(0.55 0.06 170);
+  --color-chart-4: oklch(0.7 0.07 240);
+  --color-chart-5: oklch(0.6 0.09 160);
+}
 
 :root {
   --primary-color: #003b44;
+  --text-color: #3d3d3d;
 }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text-color);
 }
 
 button {
   cursor: pointer;
+}
+
+/* Utility classes */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
