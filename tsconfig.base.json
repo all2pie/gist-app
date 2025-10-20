@@ -16,6 +16,10 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@git-notes/source"]
+    "customConditions": ["@git-notes/source"],
+    "baseUrl": ".",
+    "paths": {
+      "@common": ["common/src/index.ts"]
+    }
   }
 }
