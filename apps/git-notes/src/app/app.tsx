@@ -51,6 +51,7 @@ const router = createBrowserRouter(
     },
   ],
   {
+    basename: '/gist-app',
     future: {
       v7_relativeSplatPath: true,
     },

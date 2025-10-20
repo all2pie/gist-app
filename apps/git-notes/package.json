@@ -2,7 +2,13 @@
   "name": "@git-notes/git-notes",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://all2pie.github.io/gist-app/",
+  "scripts": {
+    "predeploy": "cd ../../ && npx nx build git-notes",
+    "deploy": "gh-pages -d dist"
+  },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "tailwindcss": "^4.1.14"
   },
   "dependencies": {
